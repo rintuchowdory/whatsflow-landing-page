@@ -1,18 +1,43 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, Zap, GitBranch, Shield, Smartphone, Cloud } from "lucide-react";
+import { ArrowRight, Code2, Zap, GitBranch, Shield, Smartphone, Cloud, ExternalLink, Github, Linkedin, Twitter } from "lucide-react";
 import { useState } from "react";
 
 /**
- * WhatsFlow Landing Page - Technisch-Minimalistisches Design
+ * WhatsFlow Landing Page - Enhanced Professional Design
  * Design-Prinzipien:
- * - Extreme Klarheit durch Whitespace und Typografie-Hierarchie
- * - Monochrome Basis mit elektrischem Cyan (#00D9FF) als Akzent
- * - Geometrische Elemente für technische Eleganz
- * - Subtile, schnelle Animationen
+ * - Moderne, professionelle Ästhetik mit Portfolio-Integration
+ * - Elektrisches Cyan (#00D9FF) als primärer Akzent
+ * - Dunkle und helle Elemente für visuelles Interesse
+ * - Interaktive Portfolio-Showcase
  */
 
 export default function Home() {
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+
+  const projects = [
+    {
+      title: "WhatsApp Chatbot Dashboard",
+      description: "Full-featured dashboard for managing WhatsApp bots with real-time analytics and chat monitoring.",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/portfolio-project-1-bvqSSLYWVQiRTWXVuHeMZt.webp",
+      tags: ["React", "FastAPI", "WebSocket", "Analytics"],
+      link: "#"
+    },
+    {
+      title: "Mobile Bot Manager",
+      description: "Android-optimized application for deploying and managing WhatsApp bots directly from mobile devices.",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/portfolio-project-2-JWpXyxqjvsboK5HPKhog7F.webp",
+      tags: ["React Native", "Python", "Docker", "CI/CD"],
+      link: "#"
+    },
+    {
+      title: "Analytics & Monitoring",
+      description: "Real-time monitoring dashboard with performance metrics, traffic analysis, and system health tracking.",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/portfolio-project-3-BXUQ7tcDbnQbK69GVpKmGo.webp",
+      tags: ["D3.js", "Node.js", "PostgreSQL", "Real-time"],
+      link: "#"
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-white text-foreground">
@@ -29,6 +54,9 @@ export default function Home() {
             <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">
               Features
             </a>
+            <a href="#portfolio" className="text-sm font-medium hover:text-primary transition-colors">
+              Portfolio
+            </a>
             <a href="#tech" className="text-sm font-medium hover:text-primary transition-colors">
               Tech Stack
             </a>
@@ -44,15 +72,18 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 relative overflow-hidden">
-        {/* Background geometric elements */}
         <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -z-10" />
 
         <div className="container max-w-6xl">
           <div className="grid grid-cols-2 gap-16 items-center">
-            {/* Left: Text */}
             <div className="space-y-8">
               <div className="space-y-4">
+                <div className="inline-block">
+                  <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold">
+                    ✨ Revolutionary Bot Development
+                  </span>
+                </div>
                 <h1 className="text-6xl font-display font-bold leading-tight">
                   Build WhatsApp Bots
                   <br />
@@ -85,7 +116,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Hero Image */}
             <div className="relative h-96">
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/whatsflow-hero-abstract-AbA6Xahn3cY8GoQ6ZG99jP.webp"
@@ -161,45 +191,116 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Workflow Section */}
-      <section className="py-24 px-4">
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-24 px-4">
         <div className="container max-w-6xl">
           <div className="mb-16">
-            <h2 className="text-4xl font-display font-bold mb-4">How It Works</h2>
+            <h2 className="text-4xl font-display font-bold mb-4">Featured Projects</h2>
             <p className="text-gray-600 text-lg max-w-2xl">
-              A streamlined workflow from development to production deployment.
+              Showcase of professional projects built with WhatsFlow technology stack.
             </p>
           </div>
 
-          <div className="relative">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/whatsflow-feature-automation-736K576FsrbPWJvnv8gkHW.webp"
-              alt="Automation Pipeline"
-              className="w-full rounded-lg"
-            />
-          </div>
+          <div className="grid grid-cols-1 gap-12">
+            {projects.map((project, idx) => (
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-xl border border-border hover:shadow-2xl transition-all duration-500"
+                onMouseEnter={() => setHoveredProject(idx)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                <div className="grid grid-cols-2 gap-0">
+                  {/* Image */}
+                  <div className="relative h-80 overflow-hidden bg-gray-100">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className={`w-full h-full object-cover transition-transform duration-500 ${
+                        hoveredProject === idx ? "scale-110" : "scale-100"
+                      }`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
 
-          <div className="grid grid-cols-4 gap-8 mt-12">
-            {[
-              { step: "1", label: "Code", desc: "Write bot logic" },
-              { step: "2", label: "Build", desc: "Automated testing" },
-              { step: "3", label: "Deploy", desc: "Push to cloud" },
-              { step: "4", label: "Run", desc: "Live WhatsApp bot" }
-            ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="w-16 h-16 bg-primary text-white rounded-lg flex items-center justify-center mx-auto mb-4 font-display font-bold text-2xl">
-                  {item.step}
+                  {/* Content */}
+                  <div className="p-8 flex flex-col justify-between bg-white">
+                    <div>
+                      <h3 className="font-display font-bold text-2xl mb-3">{project.title}</h3>
+                      <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-8">
+                        {project.tags.map((tag, tagIdx) => (
+                          <span
+                            key={tagIdx}
+                            className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Link */}
+                    <a
+                      href={project.link}
+                      className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                    >
+                      View Project
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
-                <h3 className="font-display font-bold text-lg mb-2">{item.label}</h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Developer Profile Section */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="container max-w-4xl">
+          <div className="bg-white rounded-xl border border-border p-12 text-center">
+            <div className="mb-8 flex justify-center">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/developer-avatar-Kfu9roLAqwwHFAXLPChueE.webp"
+                alt="Developer"
+                className="w-32 h-32 rounded-full border-4 border-primary"
+              />
+            </div>
+
+            <h2 className="text-3xl font-display font-bold mb-2">Rintuchowdory</h2>
+            <p className="text-primary font-semibold mb-4">Full Stack Developer & Open Source Enthusiast</p>
+            <p className="text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+              Passionate about building innovative solutions for mobile-first development. Specialized in Python, FastAPI, and modern DevOps practices. Creator of WhatsFlow - revolutionizing bot development on Android.
+            </p>
+
+            <div className="flex justify-center gap-6 mb-8">
+              <a href="#" className="text-gray-600 hover:text-primary transition-colors">
+                <Github className="w-6 h-6" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-primary transition-colors">
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-primary transition-colors">
+                <Twitter className="w-6 h-6" />
+              </a>
+            </div>
+
+            <div className="flex gap-4 justify-center">
+              <Button className="bg-primary hover:bg-primary/90 text-black font-semibold">
+                Connect
+              </Button>
+              <Button variant="outline">
+                Download CV
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Tech Stack Section */}
-      <section id="tech" className="py-24 px-4 bg-gray-50">
+      <section id="tech" className="py-24 px-4">
         <div className="container max-w-6xl">
           <div className="mb-16">
             <h2 className="text-4xl font-display font-bold mb-4">Tech Stack</h2>
@@ -209,7 +310,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-12">
-            {/* Left: Tech Stack Image */}
             <div>
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/whatsflow-tech-stack-4TxevcJrzibTDumsfnKhiE.webp"
@@ -218,7 +318,6 @@ export default function Home() {
               />
             </div>
 
-            {/* Right: Tech Details */}
             <div className="space-y-8">
               <div>
                 <h3 className="font-display font-bold text-xl mb-4">Backend</h3>
@@ -284,88 +383,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mobile Integration Section */}
-      <section className="py-24 px-4">
-        <div className="container max-w-6xl">
-          <div className="grid grid-cols-2 gap-16 items-center">
-            {/* Left: Image */}
-            <div>
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/whatsflow-mobile-integration-YR9oZmnjMid9YngMA9kNb7.webp"
-                alt="Mobile Integration"
-                className="w-full rounded-lg"
-              />
-            </div>
-
-            {/* Right: Content */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-4xl font-display font-bold mb-4">
-                  Develop on
-                  <br />
-                  <span className="text-primary">Any Device</span>
-                </h2>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  WhatsFlow is optimized for Android environments using UserLand. Build, test, and deploy production-ready WhatsApp bots directly from your mobile device without requiring a traditional development machine.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex gap-4 items-start">
-                  <div className="w-6 h-6 bg-primary rounded-sm flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white text-xs font-bold">✓</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold">Full Development Environment</p>
-                    <p className="text-sm text-gray-600">Python, Git, Docker all on Android</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-6 h-6 bg-primary rounded-sm flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white text-xs font-bold">✓</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold">Seamless Deployment</p>
-                    <p className="text-sm text-gray-600">Push to cloud with a single command</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-6 h-6 bg-primary rounded-sm flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white text-xs font-bold">✓</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold">Real-time Monitoring</p>
-                    <p className="text-sm text-gray-600">Track bot performance on the go</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Deployment Flow Section */}
-      <section className="py-24 px-4 bg-gray-50">
-        <div className="container max-w-6xl">
-          <div className="mb-16">
-            <h2 className="text-4xl font-display font-bold mb-4">Deployment Pipeline</h2>
-            <p className="text-gray-600 text-lg max-w-2xl">
-              From mobile device to production in three simple steps.
-            </p>
-          </div>
-
-          <div className="bg-white p-12 rounded-lg border border-border">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663063192003/XsCKYZ8gWf3PnNe7bj4Sbz/whatsflow-deployment-flow-4ncM2yfPhnWDEnNvgV3n2m.webp"
-              alt="Deployment Flow"
-              className="w-full max-w-2xl mx-auto"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-24 px-4 relative overflow-hidden">
+      <section className="py-24 px-4 relative overflow-hidden bg-gray-50">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
 
         <div className="container max-w-4xl text-center">
@@ -412,7 +431,7 @@ export default function Home() {
               <h3 className="font-display font-bold mb-4">Community</h3>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li><a href="#" className="hover:text-primary transition-colors">Discord</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">GitHub</a></li>
+                <li><a href="https://github.com/rintuchowdory/WhatsFlow" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">GitHub</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Twitter</a></li>
               </ul>
             </div>
